@@ -1,6 +1,6 @@
 {
 	"name": "Tensorflow Lite for Microcontrollers (WCL)",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "WCL built version of TFLite for Microcontrollers. Up to date as of June 1, 2023.",
 	"repository":
   {
