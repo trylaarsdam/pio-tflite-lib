@@ -8,6 +8,8 @@ Install the library via PlatformIO Library Manager.
 ## Examples
 There is one example in the examples/basic-inference folder. This example was built for the Arduino Pro Portenta H7, and as such many devices may not be able to fit this example into memory. It is easy to scale down the `RAM_SIZE` define in that example, and then use your own smaller model. The purpose of having such a large example was to demonstrate that this library supports TFLM's latest features (such as LSTM layers)
 
+If you want a full tutorial check out my [dev blog article](https://dev.toddr.org/tensorflow-for-the-portenta-h7/).
+
 ## Usage
 You can use this library exactly like the TFLite for Microcontrollers documentation describes, located at https://www.tensorflow.org/lite/microcontrollers. You do not need to specically include this library in your project, you can just include the TFLM headers directly, e.x.:
 ```cpp
