@@ -17,5 +17,6 @@
 		}
 	],
 	"frameworks": "Arduino",
-  "platforms": "*"
+  "platforms": "*",
+	"keywords": "tensorflow, tflm, tflite, lite, micro"
 }
