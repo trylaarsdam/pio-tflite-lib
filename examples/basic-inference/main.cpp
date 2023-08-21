@@ -13,19 +13,20 @@
 #include "lstm-model.h"
 
 /**
- * The includes for Tensorflow Lite for Microcontrollers.
- * You'll notice that there are 2 different headers available for the ops resolver:
- * either the all_ops or micro_mutable_op resolver. The all_ops resolver is great
+ * The includes for Tensorflow Lite for Microcontrollers (TFLM).
+ * There were previously 2 different resolvers:
+ * either the all_ops or micro_mutable_op resolver. The all_ops resolver was great
  * for development when your model can be changing and such, however it is best to
  * swtich to the micro_mutable_op_resolver when your model's operations are set.
  * 
- * This example uses the all ops resolver, but I'm including commented out implementations
- * of the micro_mutable_op_resolver for reference. To see what ops your model uses,
+ * In a recent update to TFLM, the all ops resolver was removed, so you must
+ * now use the mutable op resolver.
+ * 
+ * To see what ops your model uses,
  * you can use https://netron.app to view your model structure
 */
-#include "tensorflow/lite/micro/all_ops_resolver.h"
-// #include "tensorflow/lite/micro/micro_mutable_op_resolver.h" 
-// #define NUM_TF_OPS 5 // this is the number of ops in the model, used by the micro_mutable_op_resolver
+#include "tensorflow/lite/micro/micro_mutable_op_resolver.h" 
+#define NUM_TF_OPS 5 // this is the number of ops in the model, used by the micro_mutable_op_resolver
 
 #include "tensorflow/lite/micro/micro_interpreter.h"
 #include "tensorflow/lite/micro/tflite_bridge/micro_error_reporter.h"
@@ -84,16 +85,13 @@ void setup()
 		return;
 	}
 
-	// set up the all ops resolver
-	static tflite::AllOpsResolver resolver;
-
 	// set up the optional micro mutable ops resolver, and add needed operations
-	// static tflite::MicroMutableOpResolver<NUM_TF_OPS> resolver;
-	// resolver.AddUnidirectionalSequenceLSTM();
-	// resolver.AddTanh();
-	// resolver.AddFullyConnected();
-	// resolver.AddStridedSlice();
-	// resolver.AddLogistic();
+	static tflite::MicroMutableOpResolver<NUM_TF_OPS> resolver;
+	resolver.AddUnidirectionalSequenceLSTM();
+	resolver.AddTanh();
+	resolver.AddFullyConnected();
+	resolver.AddStridedSlice();
+	resolver.AddLogistic();
 
 
 	// Declare the TF lite interpreter

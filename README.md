@@ -2,6 +2,8 @@
 
 A PlatformIO library with the complete and (As of Aug 20, 2023) up-to-date version of Tensorflow Lite for Microcontrollers.
 
+WARNING: The v1.1.0 library update includes changes to TFLite Micro that **removes** the AllOpsResolver. You must now use the MicroMutableOpsResolver instead. Depending on your firmware this could be a breaking change.
+
 If you want to build this library for yourself, check out my guide: https://dev.toddr.org/tensorflow-for-the-portenta-h7/
 
 ## Installation
