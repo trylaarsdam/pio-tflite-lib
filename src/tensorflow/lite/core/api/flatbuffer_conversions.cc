@@ -858,6 +858,11 @@ TfLiteStatus ParseOpDataTfLite(const Operator* op, BuiltinOperator op_type,
       return kTfLiteOk;
     }
 
+    // TODO: skip param parsing for now since ops below don't have kernels
+    case BuiltinOperator_STABLEHLO_SLICE:
+    case BuiltinOperator_STABLEHLO_BROADCAST_IN_DIM:
+    case BuiltinOperator_STABLEHLO_CONVOLUTION:
+
     // Below are the ops with no builtin_data structure.
     // TODO(aselle): Implement call in BuiltinOptions, but nullptrs are
     // ok for now, since there is no call implementation either.
@@ -899,6 +904,14 @@ TfLiteStatus ParseOpDataTfLite(const Operator* op, BuiltinOperator op_type,
     case BuiltinOperator_SIGN:
     case BuiltinOperator_BITCAST:
     case BuiltinOperator_WHERE:
+    case BuiltinOperator_STABLEHLO_LOGISTIC:
+    case BuiltinOperator_STABLEHLO_ADD:
+    case BuiltinOperator_STABLEHLO_DIVIDE:
+    case BuiltinOperator_STABLEHLO_MULTIPLY:
+    case BuiltinOperator_STABLEHLO_MAXIMUM:
+    case BuiltinOperator_STABLEHLO_RESHAPE:
+    case BuiltinOperator_STABLEHLO_CLAMP:
+    case BuiltinOperator_STABLEHLO_CONCATENATE:
       return kTfLiteOk;
     case BuiltinOperator_PLACEHOLDER_FOR_GREATER_OP_CODES:
       return kTfLiteError;
@@ -2266,6 +2279,7 @@ TfLiteStatus ParseStridedSlice(const Operator* op,
     params->ellipsis_mask = schema_params->ellipsis_mask();
     params->new_axis_mask = schema_params->new_axis_mask();
     params->shrink_axis_mask = schema_params->shrink_axis_mask();
+    params->offset = schema_params->offset();
   } else {
     // TODO(b/157480169): We should either return kTfLiteError or fill in some
     // reasonable defaults in the params struct. We are not doing so until we
