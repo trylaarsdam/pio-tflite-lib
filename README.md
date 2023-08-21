@@ -1,6 +1,6 @@
 # Tensorflow Lite for Microcontrollers
 
-A PlatformIO library with the complete and (As of Jun 1, 2023) up-to-date version of Tensorflow Lite for Microcontrollers.
+A PlatformIO library with the complete and (As of Aug 20, 2023) up-to-date version of Tensorflow Lite for Microcontrollers.
 
 If you want to build this library for yourself, check out my guide: https://dev.toddr.org/tensorflow-for-the-portenta-h7/
 
