@@ -16,7 +16,7 @@
 			"maintainer": true
 		}
 	],
-	"frameworks": "Arduino",
+	"frameworks": "*",
   "platforms": "*",
 	"keywords": "tensorflow, tflm, tflite, lite, micro"
 }
